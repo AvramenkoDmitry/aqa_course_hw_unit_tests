@@ -6,8 +6,8 @@ n + nn + nnn, где n не перемножаются, а конкатенир�
 */
 
 
-// Enter the number from 1 to 9
-let n = prompt;
+// Set the value of n
+let n = 5; // You can replace this number with any value from 1 to 9
 
 // Make the 'n' to the String and Concatenating
 
