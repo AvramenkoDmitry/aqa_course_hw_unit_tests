@@ -11,8 +11,8 @@ let n = 5; // You can replace this number with any value from 1 to 9
 
 // Make the 'n' to the String and Concatenating
 
-let nn = n + n;
-let nnn = n + n + n;
+let nn = "" + n + n;
+let nnn = "" + n + n + n;
 
 //Make the Number from the String and count
 
