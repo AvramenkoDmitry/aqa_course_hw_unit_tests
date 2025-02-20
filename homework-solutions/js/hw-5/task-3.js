@@ -14,6 +14,7 @@ for (let char of word.toLowerCase()) {
   if (vowels.includes(char)) {
     vowelsCount++;
   } else if (char.match(/[a-z]/i)) {
+    //else if (char >= 'a' && char <= 'z')
     consonantsCount++;
   }
 }
