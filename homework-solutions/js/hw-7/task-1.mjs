@@ -17,6 +17,13 @@ function mergeArrays(...arrays) {
   */
 function devideBy(sentence) {
   // Ваш код
+  // Разбиваем строку на слова и удаляем пустые элементы, если они есть
+  const words = sentence
+    .trim()
+    .split(' ')
+    .filter((word) => word !== '');
+
+  // Если строка пуста, возвращаем пустую строку
   if (words.length === 0) return '';
 
   // Первое слово с маленькой буквы
