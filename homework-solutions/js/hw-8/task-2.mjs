@@ -20,6 +20,12 @@ const words = [
 
 function sortedByVowels(wordsArr) {
   // Ваш код
-}
+  return wordsArr.sort((a, b) => {
+    // Считаем количество гласных в словах a и b
+    const countVowels = (word) => word.split('').filter((letter) => 'aeiou'.includes(letter)).length;
 
+    return countVowels(a) - countVowels(b); // Сортируем по разнице в количестве гласных
+  });
+}
+console.log(sortedByVowels(words));
 export { sortedByVowels };
