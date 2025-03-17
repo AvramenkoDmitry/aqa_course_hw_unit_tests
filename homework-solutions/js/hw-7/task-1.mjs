@@ -5,8 +5,9 @@
   - Например: mergeArrays([1,2], [3,4], [5,6]) // [1,2,3,4,5,6]
   - Решить с использованием Spread operator
 */
-function mergeArrays() {
+function mergeArrays(...arrays) {
   // Ваш код
+  return arrays.flat();
 }
 /*
   2. Devide by _
@@ -16,6 +17,25 @@ function mergeArrays() {
   */
 function devideBy(sentence) {
   // Ваш код
+  // Разбиваем строку на слова и удаляем пустые элементы, если они есть
+  const words = sentence
+    .trim()
+    .split(' ')
+    .filter((word) => word !== '');
+
+  // Если строка пуста, возвращаем пустую строку
+  if (words.length === 0) return '';
+
+  // Первое слово с маленькой буквы
+  let result = [words[0].toLowerCase()];
+
+  // Все остальные слова с заглавной буквы
+  for (let i = 1; i < words.length; i++) {
+    result.push(words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase());
+  }
+
+  // Собираем строку с подчеркиваниями между словами
+  return result.join('_');
 }
 /*
   3. Фибаначчи
@@ -27,6 +47,17 @@ function devideBy(sentence) {
   */
 function fibonacci(n) {
   // Ваш код
+  // Если n меньше 2, то возвращаем n (0 или 1)
+  if (n < 2) return n;
+
+  let a = 0,
+    b = 1;
+  for (let i = 2; i <= n; i++) {
+    let temp = a + b;
+    a = b;
+    b = temp;
+  }
+  return b; // Возвращаем n-е число Фибоначчи
 }
 
 export { mergeArrays, fibonacci, devideBy };
