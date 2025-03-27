@@ -1,21 +1,55 @@
 class Employee {
+  #salary;
+
   constructor(firstName, lastName, profession, salary) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.profession = profession;
-    this._salary = salary;
+    this.salary = salary;
+  }
+
+  get firstName() {
+    return this._firstName;
+  }
+
+  set firstName(value) {
+    if (!value || typeof value !== 'string') {
+      throw new Error('First Name must be a string');
+    }
+    this._firstName = value;
+  }
+
+  get lastName() {
+    return this._lastName;
+  }
+
+  set lastName(value) {
+    if (!value || typeof value !== 'string') {
+      throw new Error('Last Name must be a string');
+    }
+    this._lastName = value;
+  }
+
+  get profession() {
+    return this._profession;
+  }
+
+  set profession(value) {
+    if (!value || typeof value !== 'string') {
+      throw new Error('Profession must be a string');
+    }
+    this._profession = value;
   }
 
   get salary() {
-    return this._salary;
+    return this.#salary;
   }
 
-  set salary(value) {
-    if (value > 0) {
-      this._salary = value;
-    } else {
-      throw new Error('Зарплата должна быть больше 0');
+  set salary(newSalary) {
+    if (typeof newSalary !== 'number' || newSalary <= 0) {
+      throw new Error('Salary must be > 0');
     }
+    this.#salary = newSalary;
   }
 
   getFullName() {
@@ -24,11 +58,12 @@ class Employee {
 }
 
 class Company {
+  #employees = [];
+
   constructor(title, phone, address) {
     this._title = title;
     this._phone = phone;
     this._address = address;
-    this._employees = [];
   }
 
   get title() {
@@ -44,20 +79,26 @@ class Company {
   }
 
   addEmployee(employee) {
-    if (employee instanceof Employee) {
-      this._employees.push(employee);
-    } else {
-      throw new Error('Переданный объект не является экземпляром класса Employee.');
+    if (!(employee instanceof Employee)) {
+      throw new Error('employee must be an instance of Employee');
     }
+    this.#employees.push(employee);
   }
 
   getEmployees() {
-    return this._employees;
+    return this.#employees;
   }
 
   getInfo() {
-    return `Company: ${this._title}\nAddress: ${this._address}\nEmployees: ${this._employees.length}`;
+    return `Компания: ${this._title}\nАдрес: ${this._address}\nКоличество сотрудников: ${this.#employees.length}`;
   }
 }
+
+// const company = new Company('Tech Corp', 123456, 'Main Street');
+// const emp1 = new Employee('John', 'Doe', 'Developer', 3000);
+// const emp2 = new Employee('Barbara', 'Johnson', 'QA', 2500);
+// company.addEmployee(emp1);
+// company.addEmployee(emp2);
+// console.log(company.getEmployees()); // [Employee, Employee]
 
 export { Employee, Company };
